@@ -1,3 +1,10 @@
-@import "bootstrap-sprockets";
+$navbar-default-bg: #9EFD38;
 
+@import "bootstrap-sprockets";
 @import "bootstrap";
+
+#limelite-logo {
+    float: left;
+    font-size: 2em;
+    font-weight: bold;
+}
