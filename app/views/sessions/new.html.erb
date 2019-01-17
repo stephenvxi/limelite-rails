@@ -1,0 +1,18 @@
+<h1>Login</h1>
+
+<%= form_for(:session, url: login_path) do |f| %>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email, placeholder: "Enter email", autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
