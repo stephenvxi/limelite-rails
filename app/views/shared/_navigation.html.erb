@@ -22,6 +22,9 @@
             <%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item" %>
             <a class="dropdown-item" href="#">Account Settings</a>
             <div class="dropdown-divider"></div>
+            <% if logged_in_as_admin? %>
+              <%= link_to "Administration", task_statuses_path, class: "dropdown-item" %>
+            <% end %>
             <%= link_to "Logout", logout_path, class: "dropdown-item", method: "delete" %>
           </div>
         </li>
