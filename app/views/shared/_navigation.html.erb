@@ -22,7 +22,7 @@
             <%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item" %>
             <a class="dropdown-item" href="#">Account Settings</a>
             <div class="dropdown-divider"></div>
-            <%= link_to "Logout", logout_path, class: "dropdown-item" %>
+            <%= link_to "Logout", logout_path, class: "dropdown-item", method: "delete" %>
           </div>
         </li>
       <% else %>
