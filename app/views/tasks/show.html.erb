@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Task Details</h2>
+
 <p>
   <strong>Title:</strong>
   <%= @task.title %>
@@ -14,6 +16,13 @@
   <strong>Description:</strong>
   <%= link_to @task.user.full_name, user_path(@task.user) %>
 </p>
+
+<% if @task.assignee %>
+<p>
+  <strong>Assigned to:</strong>
+  <%= link_to @task.assignee.full_name, user_path(@task.assignee) %>
+</p>
+<% end %>
 
 <p>
   <strong>Created:</strong>

@@ -10,9 +10,18 @@
       <h3 class="panel-title"><%= task.title %></h3>
     </div>
     <div class="panel-body">
-      <%= task.description %>
+      <p>
+        <%= task.description %>
+      </p>
+        <p>
+          <strong>Assigned to:</strong>
+          <% if task.assignee %>
+            <%= link_to task.assignee.full_name, user_path(task.assignee) %>
+          <% else %>
+            <strong>NO ASSIGNEE</strong>
+          <% end %>
+        </p>
     </div>
-    
     <div class="panel-footer">
       <small>Created by <%= link_to task.user.full_name, user_path(task.user) %>, <%= time_ago_in_words(task.created_at) %> ago, updated <%= time_ago_in_words(task.updated_at) %> ago</small>
       <%= link_to 'Show', task, class: "label label-primary" %>

@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h2>User Info</h2>
+
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
@@ -9,6 +11,24 @@
   <strong>Full name:</strong>
   <%= @user.full_name %>
 </p>
+
+<% if @user.assigned_tasks.length > 0 %>
+  <h3>Assigned to <%= @user.full_name %></h3>
+  <ul>
+    <% @user.assigned_tasks.each do |task| %>
+      <li><%= link_to task.title, task_path(task) %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @user.assigned_tasks.length > 0 %>
+  <h3>Created by <%= @user.full_name %></h3>
+  <ul>
+    <% @user.tasks.each do |task| %>
+      <li><%= link_to task.title, task_path(task) %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
