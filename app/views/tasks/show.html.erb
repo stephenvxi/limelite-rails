@@ -23,6 +23,10 @@
 <% end %>
 
 <p>
+  <strong>Status: <%= @task.status.name %></strong>
+</p>
+
+<p>
   <strong>Created:</strong>
   <%= time_ago_in_words(@task.created_at) %> ago
 </p>
