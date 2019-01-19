@@ -21,6 +21,11 @@
     <%= f.text_area :description %>
   </div>
 
+  <div class="field">
+    <%= f.label :assignee %>
+    <%= f.collection_select(:assignee_id, User.all, :id, :full_name, include_blank: 'None') %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

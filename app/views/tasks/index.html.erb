@@ -1,33 +1,22 @@
-<div class="page-header">
-  <h2>Tasks</h2><%= link_to 'Create New Task', new_task_path, class: "label label-default" %>
-</div>
+<h2>Tasks</h2>
+<%= link_to 'Create New Task', new_task_path, class: "badge badge-success" %>
 
-<% @tasks.each do |task| %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= task.title %></h3>
-    </div>
-    <div class="panel-body">
-      <p>
-        <%= task.description %>
-      </p>
-      <p>
-        <strong>Assigned to:</strong>
-        <% if task.assignee %>
-          <%= link_to task.assignee.full_name, user_path(task.assignee) %>
-        <% else %>
-          <strong>NO ASSIGNEE</strong>
-        <% end %>
-      </p>
-      <p>
-        <strong>Status: <%= task.status.name %></strong>
-      </p>
-    </div>
-    <div class="panel-footer">
-      <small>Created by <%= link_to task.user.full_name, user_path(task.user) %>, <%= time_ago_in_words(task.created_at) %> ago, updated <%= time_ago_in_words(task.updated_at) %> ago</small>
-      <%= link_to 'Show', task, class: "label label-primary" %>
-      <%= link_to 'Edit', edit_task_path(task), class: "label label-warning" %>
-      <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "label label-danger" %>
-    </div>
-  </div>
+<div class="card-columns">
+<% @tasks.each_with_index do |task,index| %>
+      <div class="card" style="width: 36rem;">
+        <div class="card-header"><h5><%= link_to task.title, task_path(task) %> <span class="badge badge-secondary">Status: <%= task.status.name %></span></h5></div>
+        <div class="card-body">
+          <% if task.assignee %>
+            <h6 class="card-subtitle mb-2 text-muted">Assigned to <%= link_to task.assignee.full_name, user_path(task.assignee) %></h6>
+          <% end %>
+          <p class="card-text"><%= task.description %></p>
+          <%= link_to 'Show', task, class: "card-link badge badge-info" %>
+          <%= link_to 'Edit', edit_task_path(task), class: "card-link badge badge-warning" %>
+          <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link badge badge-danger" %>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Created by <%= link_to task.user.full_name, user_path(task.user) %>, <%= time_ago_in_words(task.created_at) %> ago, updated <%= time_ago_in_words(task.updated_at) %> ago</small>
+        </div>
+      </div>
 <% end %>
+</div>

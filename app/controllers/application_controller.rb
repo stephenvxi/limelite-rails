@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
   
+  def logged_in_as_company_admin?
+    logged_in? && current_user.is_company_admin?
+  end
+  
   def logged_in_as_admin?
     logged_in? && current_user.is_admin?
   end
@@ -27,7 +31,14 @@ class ApplicationController < ActionController::Base
   def require_admin
     if !logged_in_as_admin?
       flash[:warning] = "You need administrator permissions to perform that action"
-      redirect_to login_path
+      redirect_to root_path
+    end
+  end
+  
+  def require_company_admin
+    if !logged_in_as_company_admin? 
+      flash[:warning] = "You need to be company administrator to perform that action"
+      redirect_to root_path
     end
   end
 end
