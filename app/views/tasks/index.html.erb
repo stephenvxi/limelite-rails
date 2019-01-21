@@ -2,7 +2,7 @@
 <%= link_to 'Create New Task', new_task_path, class: "badge badge-success" %>
 
 <p>
-<% if @tasks.length > 0 %>
+<% if @tasks && @tasks.length > 0 %>
   Found <%= pluralize(@tasks.length, "task") %>
 <% else %>
   No tasks found
