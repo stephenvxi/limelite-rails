@@ -5,6 +5,9 @@
     <tr>
       <th>Email</th>
       <th>Full name</th>
+      <th>Company</th>
+      <th>Tasks Assigned</th>
+      <th>Tasks Created</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +17,9 @@
       <tr>
         <td><%= user.email %></td>
         <td><%= user.full_name %></td>
+        <td><%= link_to user.company.name, company_path(user.company) if user.has_company? %></td>
+        <td><%= pluralize(user.assigned_tasks.count, "task") %></td>
+        <td><%= pluralize(user.tasks.count, "task") %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

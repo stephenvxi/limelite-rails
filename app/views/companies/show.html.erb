@@ -1,0 +1,25 @@
+<h2>Company Profile</h2>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @company.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @company.description %>
+</p>
+
+<% if @company.users.length > 0 %>
+  <h3>Users:</h3>
+  <ul>
+    <% @company.users.each do |user| %>
+      <li><%= link_to user.full_name, user_path(user) %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

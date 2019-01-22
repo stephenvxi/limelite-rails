@@ -1,14 +1,24 @@
 <h2>User Profile</h2>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
 
 <p>
   <strong>Full name:</strong>
   <%= @user.full_name %>
 </p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<% if @user.has_company? %>
+  <p>
+    <strong>Company:</strong>
+    <%= link_to @user.company.name, company_path(@user.company) %>
+  </p>
+<% end %>
 
 <% if @user.assigned_tasks.length > 0 %>
   <h3>Assigned to <%= @user.full_name %></h3>
