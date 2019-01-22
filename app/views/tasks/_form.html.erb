@@ -26,6 +26,11 @@
     <%= f.collection_select(:assignee_id, User.all, :id, :full_name, include_blank: 'None') %>
   </div>
 
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.collection_select(:status_id, TaskStatus.all, :id, :name) %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

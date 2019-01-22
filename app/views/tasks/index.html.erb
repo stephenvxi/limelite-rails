@@ -11,7 +11,7 @@
 
 <% @tasks.each do |task,index| %>
 <div class="card" style="margin: 16px;">
-  <h5 class="card-header"><%= link_to task.title, task_path(task) %> <span class="badge badge-info"><%= task.status.name %></span></h5>
+  <h5 class="card-header"><%= link_to task.title, task_path(task) %> <span class="badge badge-<%= task.status_id == 1 ? 'primary' : task.status_id == 2 ? 'warning' : 'success' %>"><%= task.status.name %></span></h5>
   <div class="card-body">
     <p class="card-text"><%= simple_format(task.description) %></p>
     <%= link_to 'Show', task, class: "badge badge-info" %>
@@ -19,7 +19,7 @@
     <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" %>
   </div>
   <div class="card-footer text-muted">
-    2 days ago
+    Created by <%= link_to task.user.full_name, user_path(task.user) %>, <%= time_ago_in_words(task.created_at) %> ago; updated <%= time_ago_in_words(task.updated_at) %> ago
   </div>
 </div>
 <% end %>
