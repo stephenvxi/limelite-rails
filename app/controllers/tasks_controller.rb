@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     if params[:q]
-      @tasks = Task.where("title LIKE '%#{params[:q]}%'")
+      @tasks = Task.where("LOWER(title) LIKE '%#{params[:q].downcase}%'")
     else
       @tasks = Task.all
     end
