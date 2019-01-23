@@ -1,6 +1,10 @@
-<h1>Editing Task</h1>
-
-<%= render 'form', task: @task %>
-
-<%= link_to 'Show', @task %> |
-<%= link_to 'Back', tasks_path %>
+<div class="card mx-auto" style="width: 48rem;">
+  <div class="card-body">
+    <h5 class="card-title">Editing Task</h5>
+    
+    <%= render 'form', task: @task %>
+    
+    <%= link_to 'Show', @task %> |
+    <%= link_to 'Back', tasks_path %>
+  </div>
+</div>

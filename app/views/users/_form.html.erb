@@ -10,25 +10,37 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+  
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :full_name %>
+        <%= f.text_field :full_name, class: "form-control" %>
+      </div>
+    </div>
+  
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :company %>
+        <%= f.collection_select(:company_id, Company.all, :id, :name, { :include_blank => 'None (Personal Use)'}, { :class => "form-control" }) %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :full_name %>
-    <%= f.text_field :full_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :company %>
-    <%= f.collection_select(:company_id, Company.all, :id, :name) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password%>
+  
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: "form-control" %>
+      </div>
+    </div>
+    
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+    </div>
   </div>
 
   <div class="actions">

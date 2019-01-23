@@ -11,24 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: "form-control", rows: 10 %>
   </div>
+  
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :assignee %>
+        <%= f.collection_select(:assignee_id, User.all, :id, :full_name, { :include_blank => 'None'}, { :class => "form-control" }) %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :assignee %>
-    <%= f.collection_select(:assignee_id, User.all, :id, :full_name, include_blank: 'None') %>
-  </div>
-
-  <div class="field">
-    <%= f.label :status %>
-    <%= f.collection_select(:status_id, TaskStatus.all, :id, :name) %>
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :status %>
+        <%= f.collection_select(:status_id, TaskStatus.all, :id, :name, {}, { :class => "form-control" }) %>
+      </div>
+    </div>
   </div>
   
   <div class="actions">

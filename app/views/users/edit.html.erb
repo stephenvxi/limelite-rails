@@ -1,6 +1,10 @@
-<h1>Editing User</h1>
-
-<%= render 'form', user: @user %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<div class="card mx-auto" style="width: 48rem;">
+  <div class="card-body">
+    <h5 class="card-title">Editing User</h5>
+    
+    <%= render 'form', user: @user %>
+    
+    <%= link_to 'Show', @user %> |
+    <%= link_to 'Back', users_path %>
+  </div>
+</div>
