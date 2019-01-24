@@ -1,0 +1,371 @@
+
+---
+ar_internal_metadata:
+  columns:
+  - key
+  - value
+  - created_at
+  - updated_at
+  records: 
+  - - environment
+    - development
+    - '2019-01-17 13:24:03.405635'
+    - '2019-01-17 13:24:03.405635'
+
+---
+companies:
+  columns:
+  - id
+  - name
+  - description
+  - created_by
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - LimeLite
+    - This is our company
+    - 1
+    - '2019-01-22 20:59:13.226007'
+    - '2019-01-22 21:17:49.993717'
+
+---
+task_statuses:
+  columns:
+  - id
+  - name
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - To Do
+    - '2019-01-18 21:02:58.668359'
+    - '2019-01-20 10:14:18.586644'
+  - - 2
+    - In Progress
+    - '2019-01-20 10:14:44.734888'
+    - '2019-01-20 10:14:44.734888'
+  - - 3
+    - Done
+    - '2019-01-20 10:14:59.571556'
+    - '2019-01-20 10:14:59.571556'
+
+---
+tasks:
+  columns:
+  - id
+  - title
+  - description
+  - user_id
+  - created_at
+  - updated_at
+  - assignee_id
+  - status_id
+  - due_date
+  - started_at
+  - finished_at
+  records: 
+  - - 17
+    - Apply styling to lists
+    - "Lists:\r\n- Tasks\r\n- Users\r\n- Task Statuses"
+    - 1
+    - '2019-01-21 20:18:13.644807'
+    - '2019-01-21 20:18:13.644807'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 18
+    - Apply styling to create/edit forms and show pages
+    - "Forms and pages:\r\n- Create/edit/show task\r\n- Create/edit/show user\r\n-
+      Create/edit/show task status"
+    - 1
+    - '2019-01-21 20:18:50.538980'
+    - '2019-01-23 13:48:13.322205'
+    - 1
+    - 2
+    - 
+    - 
+    - 
+  - - 19
+    - Implement tagging for tasks
+    - As a User, I want to be able to assign multiple tags to tasks, so that I can
+      logically group them.
+    - 1
+    - '2019-01-21 20:20:52.519501'
+    - '2019-01-21 20:20:52.519501'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 20
+    - Implement task search
+    - As a User, I want to search for tasks by text in title and other parameters,
+      so that I can filter longer lists.
+    - 1
+    - '2019-01-21 20:21:56.030194'
+    - '2019-01-22 10:50:25.371017'
+    - 1
+    - 3
+    - 
+    - 
+    - 
+  - - 21
+    - Implement saving searches
+    - As a User, I want to save searches I do on tasks list, so that I don't have
+      to input similar search parameters next time.
+    - 1
+    - '2019-01-21 20:23:17.082996'
+    - '2019-01-21 20:23:17.082996'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 22
+    - Implement switching status
+    - As a User, I want to change task's status, so that I can mark and see progress
+      on them.
+    - 1
+    - '2019-01-21 20:27:12.087128'
+    - '2019-01-22 19:36:52.947615'
+    - 1
+    - 3
+    - 
+    - 
+    - 
+  - - 23
+    - Add priorities to tasks
+    - As a User, I want to assign a priority to a task, so that I can determine optimal
+      sequence of tasks completing.
+    - 1
+    - '2019-01-21 20:28:07.159845'
+    - '2019-01-23 19:31:31.005571'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 24
+    - Add fields to task forms
+    - Need to review the task model and add missing fields to create/edit task form
+    - 1
+    - '2019-01-21 20:28:39.367143'
+    - '2019-01-23 17:48:51.840519'
+    - 1
+    - 2
+    - 
+    - 
+    - 
+  - - 25
+    - Add sorting and pagination to lists
+    - "Need to add sorting and pagination functions to lists:\r\n- Tasks\r\n- Users\r\n-
+      Task statuses"
+    - 1
+    - '2019-01-21 20:30:04.789938'
+    - '2019-01-21 20:30:04.789938'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 26
+    - Add company feature
+    - Need to create company entity and connect it to user (one company to many users).
+      Implement company admin and other company related features.
+    - 1
+    - '2019-01-21 20:30:59.513284'
+    - '2019-01-23 13:13:41.089967'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 28
+    - Separate sign up form from user admin panel
+    - "Currently, sign up form is the same as create/edit form in admin panel.\r\nNeed
+      to make sign up form a separate one."
+    - 1
+    - '2019-01-22 11:25:47.201526'
+    - '2019-01-22 11:25:47.201526'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 29
+    - Comments on tasks
+    - As a User, I want to have comments on tasks, so that I can maintain communications
+      related to them.
+    - 1
+    - '2019-01-22 19:38:01.295867'
+    - '2019-01-22 19:38:01.295867'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 30
+    - Add mailing system
+    - Need to implement mailing to maintain notifications
+    - 1
+    - '2019-01-22 19:38:39.597078'
+    - '2019-01-22 19:38:39.597078'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 31
+    - "[TECH] Replace notices with badges"
+    - Need to replace default scaffold notices with bootstrap badges
+    - 1
+    - '2019-01-22 19:54:05.426493'
+    - '2019-01-23 19:29:15.748415'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 32
+    - Group task list by status
+    - As a User, I want to have task list grouped by status, so that it is easier
+      to review them
+    - 1
+    - '2019-01-22 19:58:22.886208'
+    - '2019-01-22 19:58:22.886208'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 33
+    - Extend task search with additional fields
+    - As a User, I want to search for tasks by extended set of fields, so that I can
+      refine my search better.
+    - 1
+    - '2019-01-22 20:40:36.823617'
+    - '2019-01-22 20:40:36.823617'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 34
+    - Implement tree structure of tasks
+    - As a User, I want to create sub-tasks of unlimited depth, so that I can arrange
+      a logical structure of tasks.
+    - 1
+    - '2019-01-22 20:41:29.317264'
+    - '2019-01-22 20:41:29.317264'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 35
+    - Implement translations
+    - Add internationalization to the system
+    - 1
+    - '2019-01-22 20:45:52.633291'
+    - '2019-01-22 20:45:52.633291'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 36
+    - "[TECH] Update associations in models"
+    - "Update association field names in models, so that, in case of multiple relations
+      between two entities, relation name was more easy to understand.\r\nExample:
+      In case of user-task relation, distinguish between tasks created by user and
+      assigned to user."
+    - 1
+    - '2019-01-22 21:22:33.646237'
+    - '2019-01-22 21:22:33.646237'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 37
+    - Add i18n
+    - Add internationalization and translations to the app
+    - 1
+    - '2019-01-23 13:13:27.786272'
+    - '2019-01-23 13:48:01.187892'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 38
+    - Implement attachments to tasks
+    - As a User, I want to attach files to tasks, so that I can provide more details.
+    - 1
+    - '2019-01-23 17:53:18.448475'
+    - '2019-01-23 17:53:18.448475'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 39
+    - Add password confirmation
+    - Add second password field to user creation and sign up forms
+    - 1
+    - '2019-01-23 18:28:21.622246'
+    - '2019-01-23 18:28:21.622246'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+  - - 40
+    - Separate password change form
+    - Create a form to update user's password separated from user edit form
+    - 1
+    - '2019-01-23 18:28:58.161303'
+    - '2019-01-23 18:28:58.161303'
+    - 1
+    - 1
+    - 
+    - 
+    - 
+
+---
+users:
+  columns:
+  - id
+  - email
+  - full_name
+  - created_at
+  - updated_at
+  - password_digest
+  - is_admin
+  - is_company_admin
+  - created_by
+  - company_id
+  records: 
+  - - 1
+    - stephen.v.xi@gmail.com
+    - Stephen Vasilevsky
+    - '2019-01-17 14:23:42.246515'
+    - '2019-01-22 21:08:48.507020'
+    - "$2a$10$P07pG4zPva0EkJazgMqn9OJsNlbQOiMslZq3jnQVK1IVbqGNK8MI6"
+    - true
+    - true
+    - 1
+    - 1
+  - - 5
+    - jdoe@example.com
+    - John Doe
+    - '2019-01-23 18:57:08.836432'
+    - '2019-01-23 18:57:08.836432'
+    - "$2a$10$dLcB.7oTdqLcQsmODt.xqumNIgjNwAJtI3KwyCYTvYXszwG.n0eF2"
+    - false
+    - false
+    - 1
+    - 
