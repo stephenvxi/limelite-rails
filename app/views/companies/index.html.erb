@@ -1,31 +1,56 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Companies</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Users Count</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="card mx-auto">
+  <div class="card-header">
+    <h2>Companies</h2>
+    <%= link_to 'Add New Company', new_company_path, class: "badge badge-primary" %>
+  </div>
+  <div class="card-body">
+    <p>
+      <% if @companies && @companies.length > 0 %>
+        Showing <%= pluralize(@companies.length, "company") %>
+      <% else %>
+        No companies found
+      <% end %>
+    </p>
+    <div class="row">
+      <div class="col-2">
+        <strong>Name</strong>
+      </div>
+      <div class="col">
+        <strong>Description</strong>
+      </div>
+      <div class="col-1">
+        <strong>Users Count</strong>
+      </div>
+      <div class="col-2">
+        <strong>Actions</strong>
+      </div>
+    </div>
+    <hr/>
     <% @companies.each do |company| %>
-      <tr>
-        <td><%= company.name %></td>
-        <td><%= company.description %></td>
-        <td><%= pluralize(company.users.count, "user") %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="row">
+        <div class="col-2">
+          <%= company.name %>
+        </div>
+        <div class="col">
+          <%= company.description %>
+        </div>
+        <div class="col-1">
+          <%= pluralize(company.users.count, "user") %>
+        </div>
+        <div class="col-2">
+          <%= link_to 'Show', company, class: "badge badge-info" %>
+          <%= link_to 'Edit', edit_company_path(company), class: "badge badge-warning" %>
+          <%= link_to 'Delete', company, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" %>
+        </div>
+      </div>
+      <hr/>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+    <% if @companies && @companies.length > 0 %>
+      <p>
+        Showing <%= pluralize(@companies.length, "company") %>
+      </p>
+    <% end %>
 
-<%= link_to 'New Company', new_company_path %>
+  </div>
+</div>

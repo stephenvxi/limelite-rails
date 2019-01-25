@@ -1,8 +1,11 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @task_status.name %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @task_status.order %>
 </p>
 
 <%= link_to 'Edit', edit_task_status_path(@task_status) %> |

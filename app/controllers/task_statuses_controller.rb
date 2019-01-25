@@ -6,7 +6,7 @@ class TaskStatusesController < ApplicationController
   # GET /task_statuses
   # GET /task_statuses.json
   def index
-    @task_statuses = TaskStatus.all
+    @task_statuses = TaskStatus.all.order(:order)
   end
 
   # GET /task_statuses/1
@@ -71,6 +71,6 @@ class TaskStatusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_status_params
-      params.require(:task_status).permit(:name)
+      params.require(:task_status).permit(:name, :order)
     end
 end

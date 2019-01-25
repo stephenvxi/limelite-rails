@@ -1,33 +1,80 @@
 <div class="card mx-auto">
-  <h2 class="card-header">Tasks</h2>
+  <div class="card-header">
+    <h2>Tasks</h2>
+    <%= link_to 'Create New Task', new_task_path, class: "badge badge-primary" %>
+  </div>
   <div class="card-body">
-    <%= link_to 'Create New Task', new_task_path, class: "badge badge-success" %>
-    
     <p>
-    <% if @tasks && @tasks.length > 0 %>
-      Found <%= pluralize(@tasks.length, "task") %>
-    <% else %>
-      No tasks found
-    <% end %>
+      <% if @tasks && @tasks.length > 0 %>
+        Showing <%= pluralize(@tasks.length, "task") %>
+      <% else %>
+        No tasks found
+      <% end %>
     </p>
     
-    <% @tasks.each do |task,index| %>
-    <div class="card" style="margin: 16px 0;">
-      <h5 class="card-header">
-        <%= link_to task.title, task_path(task) %> 
-        <span class="badge badge-<%= task.status_id == 1 ? 'primary' : task.status_id == 2 ? 'warning' : 'success' %>">Status: <%= task.status.name %></span>
-        <span class="badge badge-info">Priority: <%= task.priority.name %></span>
-      </h5>
-      <div class="card-body">
-        <p class="card-text"><%= simple_format(task.description) %></p>
-        <%= link_to 'Show', task, class: "badge badge-info" %>
-        <%= link_to 'Edit', edit_task_path(task), class: "badge badge-warning" %>
-        <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" %>
+    <div class="row">
+      <div class="col">
+        <strong>Title</strong>
       </div>
-      <div class="card-footer text-muted">
-        Created by <%= link_to task.user.full_name, user_path(task.user) %>, <%= time_ago_in_words(task.created_at) %> ago; updated <%= time_ago_in_words(task.updated_at) %> ago
+      <div class="col-1">
+        <strong>Status</strong>
+      </div>
+      <div class="col-1">
+        <strong>Priority</strong>
+      </div>
+      <div class="col-1">
+        <strong>Assigned To</strong>
+      </div>
+      <div class="col-1">
+        <strong>Created By</strong>
+      </div>
+      <div class="col-1">
+        <strong>Created</strong>
+      </div>
+      <div class="col-1">
+        <strong>Updated</strong>
+      </div>
+      <div class="col-2">
+        <strong>Actions</strong>
       </div>
     </div>
+    <hr/>
+    <% @tasks.each do |task,index| %>
+      <div class="row">
+        <div class="col">
+          <%= link_to task.title, task_path(task) %>
+        </div>
+        <div class="col-1">
+          <span class="badge badge-<%= task.status_id == 1 ? 'primary' : task.status_id == 2 ? 'warning' : 'success' %>">Status: <%= task.status.name %></span>
+        </div>
+        <div class="col-1">
+          <span class="badge badge-info">Priority: <%= task.priority.name %></span>
+        </div>
+        <div class="col-1">
+          <%= link_to task.assignee.full_name, user_path(task.assignee) %>
+        </div>
+        <div class="col-1">
+          <%= link_to task.user.full_name, user_path(task.user) %>
+        </div>
+        <div class="col-1">
+          <%= time_ago_in_words(task.created_at) %> ago
+        </div>
+        <div class="col-1">
+          <%= time_ago_in_words(task.updated_at) %> ago
+        </div>
+        <div class="col-2">
+          <%= link_to 'Show', task, class: "badge badge-info" %>
+          <%= link_to 'Edit', edit_task_path(task), class: "badge badge-warning" %>
+          <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" %>
+        </div>
+      </div>
+      <hr/>
+    <% end %>
+    
+    <% if @tasks && @tasks.length > 0 %>
+      <p>
+        Showing <%= pluralize(@tasks.length, "task") %>
+      </p>
     <% end %>
   </div>
 </div>

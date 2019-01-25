@@ -1,41 +1,72 @@
-<div class="card mx-auto" style="width: 60rem;">
-  <h2 class="card-header">Users</h2>
+<div class="card mx-auto">
+  <div class="card-header">
+    <h2>Users</h2>
+    <%= link_to 'Create New User', new_user_path, class: "badge badge-primary" %>
+  </div>
   <div class="card-body">
-    <%= link_to 'Create New User', new_user_path, class: "badge badge-success" %>
-    
     <p>
       <% if @users && @users.length > 0 %>
-        Found <%= pluralize(@users.length, "user") %>
+        Showing <%= pluralize(@users.length, "user") %>
       <% else %>
         No users found
       <% end %>
     </p>
     
+    <div class="row">
+      <div class="col">
+        <strong>Full Name</strong>
+      </div>
+      <div class="col">
+        <strong>Company</strong>
+      </div>
+      <div class="col">
+        <strong>Email Address</strong>
+      </div>
+      <div class="col-1">
+        <strong>Assigned</strong>
+      </div>
+      <div class="col-1">
+        <strong>Created</strong>
+      </div>
+      <div class="col-2">
+        <strong>Actions</strong>
+      </div>
+    </div>
+    <hr/>
+    
     <% @users.each do |user| %>
-      <div class="card" style="margin: 16px 0;">
-        <h5 class="card-header"><%= link_to user.full_name, user_path(user) %></h5>
-        <div class="card-body">
-          <div class="card-group">
-            <div class="card" style="width: 18rem;">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Company: </strong><%= user.has_company? ? user.company.name : "None (Personal Use)" %></li>
-                <li class="list-group-item"><strong>Email address: </strong><%= user.email %></li>
-              </ul>
-            </div>
-            <div class="card" style="width: 18rem;">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Assigned: </strong><%= pluralize(user.assigned_tasks.count, "task") %></li>
-                <li class="list-group-item"><strong>Created: </strong><%= pluralize(user.tasks.count, "task") %></li>
-              </ul>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col">
+          <%= link_to user.full_name, user_path(user) %>
+          <% if user.is_admin? %>
+            <span class="badge badge-secondary">Administrator</span>
+          <% end %>
         </div>
-        <div class="card-footer">
+        <div class="col">
+          <%= user.has_company? ? link_to(user.company.name, company_path(user.company)) : "None (Personal Use)" %>
+        </div>
+        <div class="col">
+          <%= mail_to user.email %>
+        </div>
+        <div class="col-1">
+          <%= pluralize(user.assigned_tasks.count, "task") %>
+        </div>
+        <div class="col-1">
+          <%= pluralize(user.tasks.count, "task") %>
+        </div>
+        <div class="col-2">
           <%= link_to 'Show', user, class: "badge badge-info" %>
           <%= link_to 'Edit', edit_user_path(user), class: "badge badge-warning" %>
           <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" %>
         </div>
       </div>
+      <hr/>
+    <% end %>
+    
+    <% if @users && @users.length > 0 %>
+      <p>
+        Showing <%= pluralize(@users.length, "user") %>
+      </p>
     <% end %>
   </div>
 </div>

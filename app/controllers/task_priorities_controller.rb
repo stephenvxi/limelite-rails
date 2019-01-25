@@ -6,7 +6,7 @@ class TaskPrioritiesController < ApplicationController
   # GET /task_priorities
   # GET /task_priorities.json
   def index
-    @task_priorities = TaskPriority.all
+    @task_priorities = TaskPriority.all.order(level: :desc)
   end
 
   # GET /task_priorities/1

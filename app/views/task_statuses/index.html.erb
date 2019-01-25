@@ -1,27 +1,36 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Task Statuses</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="card mx-auto">
+  <div class="card-header">
+    <h2>Task Statuses</h2>
+    <%= link_to 'Add New Task Status', new_task_status_path, class: "badge badge-primary" %>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-2">
+        <strong>Name</strong>
+      </div>
+      <div class="col-1">
+        <strong>Order</strong>
+      </div>
+      <div class="col-2">
+        <strong>Actions</strong>
+      </div>
+    </div>
+    <hr/>
     <% @task_statuses.each do |task_status| %>
-      <tr>
-        <td><%= task_status.name %></td>
-        <td><%= link_to 'Show', task_status %></td>
-        <td><%= link_to 'Edit', edit_task_status_path(task_status) %></td>
-        <td><%= link_to 'Destroy', task_status, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="row">
+        <div class="col-2">
+          <%= task_status.name %>
+        </div>
+        <div class="col-1">
+          <%= task_status.order %>
+        </div>
+        <div class="col-2">
+          <%= link_to 'Show', task_status, class: "badge badge-info" %>
+          <%= link_to 'Edit', edit_task_status_path(task_status), class: "badge badge-warning" %>
+          <%= link_to 'Delete', task_status, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" %>
+        </div>
+      </div>
+      <hr/>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Task Status', new_task_status_path %>
+  </div>
+</div>
