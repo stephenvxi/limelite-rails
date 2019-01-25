@@ -6,9 +6,9 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     if params[:q]
-      @tasks = Task.where("LOWER(title) LIKE '%#{params[:q].downcase}%'").order("status_id DESC")
+      @tasks = Task.where("LOWER(title) LIKE '%#{params[:q].downcase}%'").joins(:priority).order("task_priorities.level DESC").order("status_id DESC")
     else
-      @tasks = Task.all.order("status_id DESC")
+      @tasks = Task.all.joins(:priority).order("task_priorities.level DESC").order("status_id DESC")
     end
   end
 
@@ -78,6 +78,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :description, :user_id, :assignee_id, :status_id)
+      params.require(:task).permit(:title, :description, :user_id, :assignee_id, :status_id, :priority_id)
     end
 end

@@ -13,7 +13,11 @@
     
     <% @tasks.each do |task,index| %>
     <div class="card" style="margin: 16px 0;">
-      <h5 class="card-header"><%= link_to task.title, task_path(task) %> <span class="badge badge-<%= task.status_id == 1 ? 'primary' : task.status_id == 2 ? 'warning' : 'success' %>"><%= task.status.name %></span></h5>
+      <h5 class="card-header">
+        <%= link_to task.title, task_path(task) %> 
+        <span class="badge badge-<%= task.status_id == 1 ? 'primary' : task.status_id == 2 ? 'warning' : 'success' %>">Status: <%= task.status.name %></span>
+        <span class="badge badge-info">Priority: <%= task.priority.name %></span>
+      </h5>
       <div class="card-body">
         <p class="card-text"><%= simple_format(task.description) %></p>
         <%= link_to 'Show', task, class: "badge badge-info" %>

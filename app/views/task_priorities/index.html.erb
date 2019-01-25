@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Task Priorities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Level</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @task_priorities.each do |task_priority| %>
+      <tr>
+        <td><%= task_priority.name %></td>
+        <td><%= task_priority.level %></td>
+        <td><%= link_to 'Show', task_priority %></td>
+        <td><%= link_to 'Edit', edit_task_priority_path(task_priority) %></td>
+        <td><%= link_to 'Destroy', task_priority, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task Priority', new_task_priority_path %>

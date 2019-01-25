@@ -27,6 +27,10 @@
 </p>
 
 <p>
+  <strong>Priority: <%= @task.priority.name %></strong>
+</p>
+
+<p>
   <strong>Created:</strong>
   <%= time_ago_in_words(@task.created_at) %> ago
 </p>

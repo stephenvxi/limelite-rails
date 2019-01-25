@@ -25,6 +25,7 @@
             <% if logged_in_as_admin? %>
               <%= link_to "Companies", companies_path, class: "dropdown-item" %>
               <%= link_to "Task Statuses", task_statuses_path, class: "dropdown-item" %>
+              <%= link_to "Task Priorities", task_priorities_path, class: "dropdown-item" %>
             <% end %>
             <div class="dropdown-divider"></div>
             <%= link_to "Logout", logout_path, class: "dropdown-item", method: "delete" %>

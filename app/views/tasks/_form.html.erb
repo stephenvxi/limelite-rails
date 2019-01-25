@@ -35,6 +35,13 @@
         <%= f.collection_select(:status_id, TaskStatus.all, :id, :name, {}, { :class => "form-control" }) %>
       </div>
     </div>
+    
+    <div class="col">
+      <div class="form-group">
+        <%= f.label :priority %>
+        <%= f.collection_select(:priority_id, TaskPriority.all, :id, :name, {}, { :class => "form-control" }) %>
+      </div>
+    </div>
   </div>
   
   <div class="actions">

@@ -2,6 +2,7 @@ class Task < ApplicationRecord
   belongs_to :user
   belongs_to :assignee, class_name: "User"
   belongs_to :status, class_name: "TaskStatus"
+  belongs_to :priority, class_name: "TaskPriority"
   
   validates :title, presence: true, length: { minimum: 3, maximum: 50 }
   validates :description, presence: true

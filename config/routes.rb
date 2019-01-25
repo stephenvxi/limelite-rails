@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :task_priorities
   resources :companies
   resources :task_statuses
   resources :users
