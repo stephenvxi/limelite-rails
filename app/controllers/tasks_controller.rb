@@ -5,10 +5,18 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    if params[:q]
-      @tasks = Task.where("LOWER(title) LIKE '%#{params[:q].downcase}%'").joins(:priority).joins(:status).order('"task_priorities"."level" DESC').order('"task_statuses"."order" ASC')
-    else
-      @tasks = Task.all.joins(:priority).joins(:status).order('"task_priorities"."level" DESC').order('"task_statuses"."order" ASC')
+    @tasks = Task.all.joins(:priority).joins(:status).order('"task_priorities"."level" DESC').order('"task_statuses"."order" ASC')
+    # Search by title
+    if params[:q] && params[:q].length > 0
+      @tasks = @tasks.where("LOWER(title) LIKE '%#{params[:q].downcase}%'")
+    end
+    # Search by status
+    if params[:status] && params[:status].length > 0
+      @tasks = @tasks.where("status_id = #{params[:status]}")
+    end
+    # Search by priority
+    if params[:priority] && params[:priority].length > 0
+      @tasks = @tasks.where("priority_id = #{params[:priority]}")
     end
   end
 

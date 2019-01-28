@@ -11,10 +11,12 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:success] = "You have successfully logged in"
-      redirect_to root_path
+      format.html { redirect_to root_path }
+      format.json { render json: session, status: :created, location: session }
     else
       flash.now[:danger] = "Incorrect email or password"
-      render 'new'
+      format.html { render 'new' }
+      format.json { render json: session.errors, status: :unprocessable_entity }
     end
   end
   
