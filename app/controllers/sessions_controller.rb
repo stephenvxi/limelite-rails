@@ -8,15 +8,18 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      session[:user_id] = user.id
-      flash[:success] = "You have successfully logged in"
-      format.html { redirect_to root_path }
-      format.json { render json: session, status: :created, location: session }
-    else
-      flash.now[:danger] = "Incorrect email or password"
-      format.html { render 'new' }
-      format.json { render json: session.errors, status: :unprocessable_entity }
+    
+    respond_to do |format|
+      if user && user.authenticate(params[:session][:password])
+        session[:user_id] = user.id
+        flash[:success] = "You have successfully logged in"
+        format.html { redirect_to root_path }
+        format.json { render json: session, status: :created, location: session }
+      else
+        flash[:danger] = "Incorrect email or password"
+        format.html { render :new }
+        format.json { render json: session.errors, status: :unprocessable_entity }
+      end
     end
   end
   
