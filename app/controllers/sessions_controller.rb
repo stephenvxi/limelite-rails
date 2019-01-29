@@ -6,17 +6,27 @@ class SessionsController < ApplicationController
     end
   end
 
+  # POST /login
+  # POST /login.json
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-  
-    if user && user.authenticate(params[:session][:password])
-      session[:user_id] = user.id
-      flash[:success] = "You have successfully logged in"
-      redirect_to root_path
-    else
-      flash[:danger] = "Incorrect email or password"
-      render :new
+    user_id = request.format.json? ? params[:email] : params[:session][:user_id]
+    password = request.format.json? ? params[:password] : params[:session][:password]
+    
+    user = User.find_by(email: user_id.downcase)
+    
+    respond_to do |format|
+      if user && user.authenticate(password)
+        session[:user_id] = user.id
+        flash[:success] = "You have successfully logged in"
+        format.html { redirect_to root_path }
+        format.json { render json: user }
+      else
+        flash[:danger] = "Incorrect email or password"
+        format.html { render :new }
+        format.json { render json: "Incorrect email or password" }
+      end
     end
+   
   end
   
   def destroy
