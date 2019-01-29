@@ -78,7 +78,7 @@
           <span class="badge badge-<%= task.priority.style %>"><%= task.priority.name %></span>
         </div>
         <div class="col-1">
-          <%= link_to task.assignee.full_name, user_path(task.assignee) %>
+          <%= link_to task.assignee.full_name, user_path(task.assignee) if task.assignee %>
         </div>
         <div class="col-1">
           <%= link_to task.user.full_name, user_path(task.user) %>
