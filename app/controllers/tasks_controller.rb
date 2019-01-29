@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  # before_action :require_user
+  before_action :require_user
 
   # GET /tasks
   # GET /tasks.json
@@ -38,8 +38,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-    # @task.user = current_user
-    @task.user_id = 1
+    @task.user = current_user
 
     respond_to do |format|
       if @task.save
