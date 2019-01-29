@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190125165359) do
+ActiveRecord::Schema.define(version: 20190129100627) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20190125165359) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
     t.string   "full_name"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
@@ -60,6 +59,8 @@ ActiveRecord::Schema.define(version: 20190125165359) do
     t.boolean  "is_company_admin", default: false
     t.integer  "created_by"
     t.integer  "company_id"
+    t.string   "email",            default: "",    null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
