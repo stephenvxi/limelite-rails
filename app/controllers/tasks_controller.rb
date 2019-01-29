@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :require_user
+  # before_action :require_user
+  before_action :doorkeeper_authorize!
 
   # GET /tasks
   # GET /tasks.json
