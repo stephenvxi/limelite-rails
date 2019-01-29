@@ -9,10 +9,10 @@ class SessionsController < ApplicationController
   # POST /login
   # POST /login.json
   def create
-    user_id = request.format.json? ? params[:email] : params[:session][:user_id]
+    email = request.format.json? ? params[:email] : params[:session][:email]
     password = request.format.json? ? params[:password] : params[:session][:password]
     
-    user = User.find_by(email: user_id.downcase)
+    user = User.find_by(email: email.downcase)
     
     respond_to do |format|
       if user && user.authenticate(password)
