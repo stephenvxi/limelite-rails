@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
       else
         flash[:danger] = "Incorrect email or password"
         format.html { render :new }
-        format.json { render status: :unauthorized }
+        format.json { render json: flash, status: :unauthorized }
       end
     end
    
