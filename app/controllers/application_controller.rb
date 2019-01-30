@@ -25,21 +25,30 @@ class ApplicationController < ActionController::Base
   def require_user
     if !logged_in?
       flash[:warning] = "You must be logged in to perform that action"
-      redirect_to login_path
-    end
-  end
-  
-  def require_admin
-    if !logged_in_as_admin?
-      flash[:warning] = "You need administrator permissions to perform that action"
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to login_path }
+        format.json { render json: flash, status: :unauthorized }
+      end
     end
   end
   
   def require_company_admin
     if !logged_in_as_company_admin? 
       flash[:warning] = "You need to be company administrator to perform that action"
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render json: flash, status: :unauthorized }
+      end
+    end
+  end
+  
+  def require_admin
+    if !logged_in_as_admin?
+      flash[:warning] = "You need administrator permissions to perform that action"
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render json: flash, status: :unauthorized }
+      end
     end
   end
 end
