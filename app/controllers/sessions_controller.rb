@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class SessionsController < ApplicationController
   
   def new
@@ -16,10 +18,15 @@ class SessionsController < ApplicationController
     
     respond_to do |format|
       if user && user.authenticate(password)
+        auth_token = AuthToken.new
+        auth_token.uuid = SecureRandom.uuid
+        auth_token.user_id = user.id
+        auth_token.expired = false
+        auth_token.save
         session[:user_id] = user.id
         flash[:success] = "You have successfully logged in"
         format.html { redirect_to root_path }
-        format.json { render json: user }
+        format.json { render :json => user.to_json(:include => [:auth_token]) }
       else
         flash[:danger] = "Incorrect email or password"
         format.html { render :new }
