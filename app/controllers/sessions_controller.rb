@@ -26,7 +26,8 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id
         flash[:success] = "You have successfully logged in"
         format.html { redirect_to root_path }
-        format.json { render :json => user.to_json(:include => [:auth_token]) }
+        format.json { render :json => { :user => user
+                                        :auth_token: auth_token } }
       else
         flash[:danger] = "Incorrect email or password"
         format.html { render :new }
