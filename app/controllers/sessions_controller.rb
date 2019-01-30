@@ -37,6 +37,8 @@ class SessionsController < ApplicationController
   end
   
   def destroy
+    auth_token = AuthToken.where(user_id: current_user.id, expired: false).first
+    auth_token.toggle!(:expired) if auth_token
     session[:user_id] = nil
     flash[:success] = "You have logged out"
     redirect_to root_path
