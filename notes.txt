@@ -1,0 +1,22 @@
+Token based auth
+
+- Create auth_tokens table to store session tokens (uniquely generated guids)
+- auth_tokens table columns:
+-- id (default, won't use in app)
+-- uuid - auto generated upon login
+-- user_id - id of a user who logs in
+-- timestamps:
+--- created_at - datetime token was created
+--- updated_at - datetime token was last updated
+-- remember_me - boolean flag that determines whether to persist the session or not
+- Generate tokens upon login, associate them with user_id and store in auth_tokens table
+- Store uuids for logged users in session (web) and permanent storage (android)
+- User uuids instead of user_id in request params and sessions
+- Send uuid as auth_token param with each request from android (and receive it with every response)
+- Remove uuid from permanent storage on android and send destroy request upon logout on android
+- Destroy db record and clear the session field in web upon logout
+- Upon each request:
+-- Check validity and updated_at of the token
+-- If token is invalid, delete it from the session and log out the user
+-- If token is valid and now minus updated_at is more than 4 hours, update the uuid with the new value and send it back to client (via session or field in json response)
+-- Otherwise, don't do anything
