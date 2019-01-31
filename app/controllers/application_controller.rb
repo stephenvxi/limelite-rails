@@ -6,8 +6,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?, :logged_in_as_admin?
   
   def current_user
-    user_id = request.format.json? ? params[:user_id] : session[:user_id]
-    @current_user ||= User.find(user_id) if user_id
+    uuid = request.format.json? ? params[:auth_token] : session[:auth_token]
+    if uuid
+      auth_token = AuthToken.find_by(uuid: uuid)
+    end
+    @current_user ||= auth_token.user if auth_token && !auth_token.expired?
   end
   
   def logged_in?

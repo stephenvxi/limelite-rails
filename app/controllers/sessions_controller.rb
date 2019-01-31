@@ -21,9 +21,8 @@ class SessionsController < ApplicationController
         auth_token = AuthToken.new
         auth_token.uuid = SecureRandom.uuid
         auth_token.user_id = user.id
-        auth_token.expired = false
         auth_token.save
-        session[:user_id] = user.id
+        session[:auth_token] = auth_token.uuid
         flash[:success] = "You have successfully logged in"
         format.html { redirect_to root_path }
         format.json { render :json => { :user => user, :auth_token => auth_token } }
@@ -37,11 +36,18 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    auth_token = AuthToken.where(user_id: current_user.id, expired: false).first
-    auth_token.toggle!(:expired) if auth_token
-    session[:user_id] = nil
-    flash[:success] = "You have logged out"
-    redirect_to root_path
+    uuid = request.format.json? ? params[:auth_token] : session[:auth_token]
+    if uuid
+      auth_token = AuthToken.find_by(uuid: uuid)
+      auth_token.expired = true
+      auth_token.save
+    end
+    session[:auth_token] = nil
+    respond_to do |format|
+      flash[:success] = "You have logged out"
+      format.html { redirect_to root_path }
+      format.json { render json: flash }
+    end
   end
   
 end

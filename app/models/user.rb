@@ -5,7 +5,7 @@ class User < ApplicationRecord
   belongs_to :company
   has_many :created_companies, class_name: "Company", foreign_key: "created_by"
   belongs_to :creator, class_name: "User", foreign_key: "created_by"
-  has_many :auth_token
+  has_many :auth_tokens
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
