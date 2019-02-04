@@ -23,6 +23,9 @@
         <strong>Email Address</strong>
       </div>
       <div class="col-1">
+        <strong>Last Login</strong>
+      </div>
+      <div class="col-1">
         <strong>Assigned</strong>
       </div>
       <div class="col-1">
@@ -47,6 +50,9 @@
         </div>
         <div class="col">
           <%= mail_to user.email %>
+        </div>
+        <div class="col-1">
+          <%= user.auth_tokens.last.created_at.strftime("%a, %e %b %Y %T %Z") if user.auth_tokens.length > 0 %>
         </div>
         <div class="col-1">
           <%= pluralize(user.assigned_tasks.count, "task") %>

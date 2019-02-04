@@ -39,34 +39,8 @@
       </div>
     </div>
     <hr/>
-    
-    <form class="my-2 my-lg-0" action="<%= tasks_path %>" method="GET">
-      <div class="row">
-        <div class="col">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value="<%= params[:q] %>">
-        </div>
-        <div class="col-1">
-          <%= select("get", "status", TaskStatus.all.order('"task_statuses"."order" ASC').collect {|ts| [ ts.name, ts.id ] }, { include_blank: true }, class: "form-control", name: "status") %>
-        </div>
-        <div class="col-1">
-          <%= select("get", "priority", TaskPriority.all.order('"task_priorities"."level" DESC').collect {|tp| [ tp.name, tp.id ] }, { include_blank: true }, class: "form-control", name: "priority") %>
-        </div>
-        <div class="col-1">
-        </div>
-        <div class="col-1">
-        </div>
-        <div class="col-1">
-        </div>
-        <div class="col-1">
-        </div>
-        <div class="col-2">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </div>
-      </div>
-      <hr/>
-    </form>
-    
-    <% @tasks.each do |task,index| %>
+
+    <% @tasks.each do |task| %>
       <div class="row">
         <div class="col">
           <%= link_to task.title, task_path(task) %>

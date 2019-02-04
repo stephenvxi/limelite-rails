@@ -31,7 +31,11 @@ class TasksController < ApplicationController
   end
 
   # GET /tasks/1/edit
+  # GET /tasks/1/edit.json
   def edit
+    if request.format.json?
+      render :json => { :task => @task, :statuses => TaskStatus.all.order(order: :asc), :priorities => TaskPriority.all.order(level: :desc) }
+    end
   end
 
   # POST /tasks
