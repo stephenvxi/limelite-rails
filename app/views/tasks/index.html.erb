@@ -6,75 +6,53 @@
   <div class="card-body">
     <p>
       <% if @tasks && @tasks.length > 0 %>
-        Showing <%= pluralize(@tasks.length, "task") %>
+        Showing <%= pluralize(@tasks.length, "task") %> of <%= Task.all.length %>
       <% else %>
         No tasks found
       <% end %>
     </p>
     
     <div class="row">
-      <div class="col">
-        <strong>Title</strong>
-      </div>
-      <div class="col-1">
-        <strong>Status</strong>
-      </div>
-      <div class="col-1">
-        <strong>Priority</strong>
-      </div>
-      <div class="col-1">
-        <strong>Assigned To</strong>
-      </div>
-      <div class="col-1">
-        <strong>Created By</strong>
-      </div>
-      <div class="col-1">
-        <strong>Created</strong>
-      </div>
-      <div class="col-1">
-        <strong>Updated</strong>
-      </div>
-      <div class="col-2">
-        <strong>Actions</strong>
-      </div>
+      <% TaskStatus.all.order(:order).each do |status| %>
+        <div class="col"><strong><%= status.name %> (Showing <%= pluralize(@tasks.where(status: status).length, "task") %> of <%= status.tasks.length %>)</strong></div>
+      <% end %>
     </div>
+    
     <hr/>
-
-    <% @tasks.each do |task| %>
-      <div class="row">
+    
+    <div class="row">
+      <% TaskStatus.all.order(:order).each do |status| %>
         <div class="col">
-          <%= link_to task.title, task_path(task) %>
+          <% @tasks.where(status: status).each do |task| %>
+            <div class="card">
+              <div class="card-header">
+                <%= link_to task.title, task_path(task) %> <span class="badge badge-<%= task.priority.style %>"><%= task.priority.name %></span>
+              </div>
+              <div class="card-body">
+                <%= simple_format task.description %>
+                <% if task.assignee %>
+                  <hr/>
+                  Assigned to <%= link_to task.assignee.full_name, user_path(task.assignee) if task.assignee %>
+                <% end %>
+              </div>
+              <div class="card-footer text-right">
+                <%= link_to 'Show', task, class: "badge badge-info" %>
+                <%= link_to 'Edit', edit_task_path(task), class: "badge badge-warning" %>
+                <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" %>
+                <div class="text-muted">
+                  <small>Created by <%= link_to task.user.full_name, user_path(task.user) %>, <%= time_ago_in_words(task.created_at) %> ago; updated <%= time_ago_in_words(task.updated_at) %> ago</small>
+                </div>
+              </div>
+            </div>
+            <br/>
+          <% end %>
         </div>
-        <div class="col-1">
-          <span class="badge badge-<%= task.status.style %>"><%= task.status.name %></span>
-        </div>
-        <div class="col-1">
-          <span class="badge badge-<%= task.priority.style %>"><%= task.priority.name %></span>
-        </div>
-        <div class="col-1">
-          <%= link_to task.assignee.full_name, user_path(task.assignee) if task.assignee %>
-        </div>
-        <div class="col-1">
-          <%= link_to task.user.full_name, user_path(task.user) %>
-        </div>
-        <div class="col-1">
-          <%= time_ago_in_words(task.created_at) %> ago
-        </div>
-        <div class="col-1">
-          <%= time_ago_in_words(task.updated_at) %> ago
-        </div>
-        <div class="col-2">
-          <%= link_to 'Show', task, class: "badge badge-info" %>
-          <%= link_to 'Edit', edit_task_path(task), class: "badge badge-warning" %>
-          <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" %>
-        </div>
-      </div>
-      <hr/>
-    <% end %>
+      <% end %>
+    </div>
     
     <% if @tasks && @tasks.length > 0 %>
       <p>
-        Showing <%= pluralize(@tasks.length, "task") %>
+        Showing <%= pluralize(@tasks.length, "task") %> of <%= Task.all.length %>
       </p>
     <% end %>
   </div>
